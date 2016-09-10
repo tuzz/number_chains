@@ -61,3 +61,95 @@ Written in full, that last number is:
 Longer chains are unknown. Interestingly, there is a chain of 8 with 'and' but
 not without. The program checks the range 1 up to 590,295,810,358,705,651,711 so
 they must lie beyond that.
+
+## How do I run it
+
+You need to install Ruby and run `bundle install`.
+
+You need to install [Sentient](http://sentient-lang.org/tutorial/installation)
+as well as [Riss](https://github.com/sentient-lang/homebrew-riss) and
+[Lingeling](https://github.com/sentient-lang/homebrew-lingeling).
+
+You can then run `bundle exec rake` to view the following output:
+
+```
+$ time bundle exec rake
+Searching for the smallest chain of length 2...
+  [5, 4]
+
+Searching for the smallest chain of length 3...
+  [7, 5, 4]
+  [3, 5, 4]
+
+Searching for the smallest chain of length 4...
+  [14, 8, 5, 4]
+  [13, 8, 5, 4]
+  [10, 3, 5, 4]
+  [2, 3, 5, 4]
+  [1, 3, 5, 4]
+
+Searching for the smallest chain of length 5...
+  [76, 10, 3, 5, 4]
+  [12, 6, 3, 5, 4]
+  [11, 6, 3, 5, 4]
+
+Searching for the smallest chain of length 6...
+  [358, 25, 10, 3, 5, 4]
+  [355, 24, 10, 3, 5, 4]
+  [307, 20, 6, 3, 5, 4]
+  [303, 20, 6, 3, 5, 4]
+  [116, 20, 6, 3, 5, 4]
+  [77, 12, 6, 3, 5, 4]
+  [27, 11, 6, 3, 5, 4]
+  [23, 11, 6, 3, 5, 4]
+
+Searching for the smallest chain of length 7...
+  [314, 23, 11, 6, 3, 5, 4]
+  [313, 23, 11, 6, 3, 5, 4]
+  [153, 23, 11, 6, 3, 5, 4]
+  [148, 23, 11, 6, 3, 5, 4]
+  [143, 23, 11, 6, 3, 5, 4]
+  [124, 23, 11, 6, 3, 5, 4]
+
+Searching for the smallest chain of length 8...
+  none (between 1 and 511, increasing...)
+  none (between 1 and 8191, increasing...)
+  none (between 1 and 131071, increasing...)
+  none (between 1 and 2097151, increasing...)
+  none (between 1 and 33554431, increasing...)
+  none (between 1 and 536870911, increasing...)
+  none (between 1 and 8589934591, increasing...)
+  [128373198878, 124, 23, 11, 6, 3, 5, 4]
+  [123778473987, 124, 23, 11, 6, 3, 5, 4]
+  [117578373378, 124, 23, 11, 6, 3, 5, 4]
+  [113377378773, 124, 23, 11, 6, 3, 5, 4]
+  [113373877778, 124, 23, 11, 6, 3, 5, 4]
+  [113373378373, 124, 23, 11, 6, 3, 5, 4]
+  [113373373378, 124, 23, 11, 6, 3, 5, 4]
+  [113373373373, 124, 23, 11, 6, 3, 5, 4]
+
+Searching for the smallest chain of length 9...
+  none (between 1 and 137438953471, increasing...)
+  none (between 1 and 2199023255551, increasing...)
+  none (between 1 and 35184372088831, increasing...)
+  none (between 1 and 562949953421311, increasing...)
+  none (between 1 and 9007199254740991, increasing...)
+  none (between 1 and 144115188075855871, increasing...)
+  none (between 1 and 2305843009213693951, increasing...)
+  none (between 1 and 36893488147419103231, increasing...)
+
+Exception: Invalid string length
+
+Stack trace:
+Level 1 instruction: {"type":"not"}
+Level 2 instruction: {"type":"greaterequal"}
+Level 3 instruction: {"type":"call","name":"_anonymous1","width":1}
+Level 4 instruction: {"type":"functionExpression","value":[8,"*_anonymous1"]}
+
+real    7m5.415s
+user    6m20.249s
+sys     0m50.793s
+```
+
+If you have any questions, you can contact me on
+[Twitter](https://twitter.com/cpatuzzo). Thanks.

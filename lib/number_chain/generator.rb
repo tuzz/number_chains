@@ -3,7 +3,7 @@ module NumberChain
 
     class << self
       def bits
-        @bits ||= 8
+        @bits ||= 10
       end
 
       def bits=(bits)
