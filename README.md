@@ -124,12 +124,17 @@ length 17 and uses the 'and' convention:
 27 = 3 + 23 + 1 -> three plus twenty three plus one (27 letters)
 ```
 
+## Plotting chains
+
 I also added a task that plots these chains in three-dimensions using
-[gnuplot](http://www.gnuplot.info/). You can run it with `bundle exec rake plot`
-and will need to install `gnuplot` for it to work. Here's the plot for the above
-chain:
+[gnuplot](http://www.gnuplot.info/). It orders the numbers in each summation
+then uses the first as the x-coordinate, second as y and third as z.
+You can run it with `bundle exec rake plot` and will need to install `gnuplot`
+for it to work. Here's the plot for the above chain:
 
 ![Plot](./plot.gif)
+
+The code that finds this chain can be found on the `three-dimensions` branch.
 
 ## How do I run it
 
