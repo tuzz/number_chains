@@ -62,6 +62,21 @@ Longer chains are unknown. Interestingly, there is a chain of 8 with 'and' but
 not without. The program checks the range 1 up to 590,295,810,358,705,651,711 so
 they must lie beyond that.
 
+I also had a go at finding chains that begin with a minus number. Here are the
+chains with the start number closest to zero for each length:
+
+```
+1: no solutions
+2: no solutions
+3: [-5, 9, 4]
+4: [-1, 8, 5, 4]
+5: [-7, 10, 3, 5, 4]
+6: [-12, 11, 6, 3, 5, 4]
+7: [-103, 23, 11, 6, 3, 5, 4] (with 'and')
+7: [-113, 23, 11, 6, 3, 5, 4] (without 'and')
+8: [-101373373373, 124, 23, 11, 6, 3, 5, 4] (with 'and')
+```
+
 ## How do I run it
 
 You need to install Ruby and run `bundle install`.
