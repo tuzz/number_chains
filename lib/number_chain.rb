@@ -23,6 +23,7 @@ module NumberChain
         Sentient.compile(program)
       end
 
+      lessthan = Array(lessthan).inject(:+)
       result = Sentient.run(machine_code, lessthan: lessthan)
       result["chain"] if result["chain"]
     end

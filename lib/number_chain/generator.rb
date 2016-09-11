@@ -19,19 +19,43 @@ module NumberChain
           #{lookup_table}
 
           # The number of bits needs to be: 2^(b - 1) > maximum
-          int#{bits} n, lessthan;
+          int#{bits} n, m, o;
+          int#{bits + 2} lessthan;
 
           chain = [];
-          chain = chain.push(n);
+          chain = chain.push([n, m, o]);
 
           #{length - 1}.times(function^ (i) {
-            n = numberOfLettersIn(n);
-            chain = chain.push(n);
+            letters = numberOfLettersIn(n) + numberOfLettersIn(m) + numberOfLettersIn(o) + 8;
+
+            invariant n.positive?;
+            invariant m.positive?;
+            invariant o.positive?;
+
+            int#{bits} x, y, z;
+            invariant x + y + z == letters;
+            n = x;
+            m = y;
+            o = z;
+
+            chain = chain.push([n, m, o]);
           });
 
-          invariant chain.uniq?;
-          invariant chain.last == 4;
-          invariant lessthan == -1 ? true : chain.first < lessthan;
+          x = chain.last[0];
+          y = chain.last[1];
+          z = chain.last[2];
+          letters = numberOfLettersIn(x) + numberOfLettersIn(y) + numberOfLettersIn(z) + 8;
+          invariant x + y + z == letters;
+          invariant x.positive?;
+          invariant y.positive?;
+          invariant z.positive?;
+
+          x = chain.first[0];
+          y = chain.first[1];
+          z = chain.first[2];
+
+          invariant chain.uniqBy?(*sum);
+          invariant lessthan == -1 ? true : x + y + z < lessthan;
 
           expose chain, lessthan;
         SNT
