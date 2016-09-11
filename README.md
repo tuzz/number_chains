@@ -77,6 +77,60 @@ chains with the start number closest to zero for each length:
 8: [-101373373373, 124, 23, 11, 6, 3, 5, 4] (with 'and')
 ```
 
+Finally, I had a go at finding chains of the form "a plus b" where the number of
+letters must form the value for the the next sum in the sequence and all
+summations must be unique in the sequence. Here's the longest chain (13) that
+starts on the smallest possible sum that I could find:
+
+```
+226 = 103 + 123 -> one hundred and three plus one hundred and twenty three (46 letters)
+46 = 23 + 23 -> twenty three plus twenty three (26 letters)
+26 = 13 + 13 -> thirteen plus thirteen (20 letters)
+20 = 17 + 3 -> seventeen plus three (18 letters)
+18 = 15 + 3 -> fifteen plus three (16 letters)
+16 = 3 + 13 -> three plus thirteen (17 letters)
+17 = 8 + 9 -> eight plus nine (13 letters)
+13 = 9 + 4 -> nine plus four (12 letters)
+12 = 10 + 2 -> ten plus two (10 letters)
+10 = 9 + 1 -> nine plus one (11 letters)
+11 = 8 + 3 -> eight plus three (14 letters)
+14 = 13 + 1 -> thirteen plus one (15 letters)
+15 = 14 + 1 -> fourteen plus one (15 letters)
+```
+
+The above chain uses the 'and' convention above 100. The longest chain without
+'and' is the same except it starts on 123 + 123.
+
+Here's the longest chain I could find of the form 'a plus b plus c'. It is of
+length 17 and uses the 'and' convention:
+
+```
+30519 = 23373 + 3373 + 3773 -> twenty three thousand three hundred and seventy three plus three thousand three hundred and seventy three plus three thousand seven hundred and seventy three (134 letters)
+134 = 17 + 14 + 103 -> seventeen plus fourteen plus one hundred and three (43 letters)
+43 = 3 + 17 + 23 -> three plus seventeen plus twenty three (33 letters)
+33 = 17 + 13 + 3 -> seventeen plus thirteen plus three (30 letters)
+30 = 4 + 13 + 13 -> four plus thirteen plus thirteen (28 letters)
+28 = 4 + 1 + 23 -> four plus one plus twenty three (26 letters)
+26 = 19 + 6 + 1 -> nineteen plus six plus one (22 letters)
+22 = 10 + 10 + 2 -> ten plus ten plus two (17 letters)
+17 = 7 + 2 + 8 -> seven plus two plus eight (21 letters)
+21 = 9 + 6 + 6 -> nine plus six plus six (18 letters)
+18 = 3 + 13 + 2 -> three plus thirteen plus two (24 letters)
+24 = 6 + 10 + 8 -> six plus ten plus eight (19 letters)
+19 = 9 + 5 + 5 -> nine plus five plus five (20 letters)
+20 = 3 + 13 + 4 -> three plus thirteen plus four (25 letters)
+25 = 16 + 8 + 1 -> sixteen plus eight plus one (23 letters)
+23 = 17 + 3 + 3 -> seventeen plus three plus three (27 letters)
+27 = 3 + 23 + 1 -> three plus twenty three plus one (27 letters)
+```
+
+I also added a task that plots these chains in three-dimensions using
+[gnuplot](http://www.gnuplot.info/). You can run it with `bundle exec rake plot`
+and will need to install `gnuplot` for it to work. Here's the plot for the above
+chain:
+
+![Plot](./plot.gif)
+
 ## How do I run it
 
 You need to install Ruby and run `bundle install`.

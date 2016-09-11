@@ -3,6 +3,7 @@ require "json"
 
 require "number_chain/generator"
 require "number_chain/sentient"
+require "number_chain/plotter"
 
 module NumberChain
   class << self
