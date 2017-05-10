@@ -3,59 +3,64 @@ require "spec_helper"
 RSpec.describe NumberChain::Generator do
   it "can generate exponentiated terms" do
     terms = described_class.generate_exponentiated_terms(5)
-    expect(terms.strip).to eq "total += numberOfLettersUpto1000(remainder);"
+    expect(terms.strip).to eq "total += numberOfLettersUpto1000(remainder, false);"
 
     terms = described_class.generate_exponentiated_terms(555)
-    expect(terms.strip).to eq "total += numberOfLettersUpto1000(remainder);"
+    expect(terms.strip).to eq "total += numberOfLettersUpto1000(remainder, false);"
 
     terms = described_class.generate_exponentiated_terms(5_555)
     expect(terms.strip).to eq [
-      "thousands, remainder = remainder.divmod(1000);",
+      "milles, remainder = remainder.divmod(1000);",
 
-      "total += numberOfLettersUpto1000(remainder);",
+      "total += numberOfLettersUpto1000(remainder, false);",
 
-      "total += numberOfLettersUpto1000(thousands);",
-      "total += thousands.zero? ? 0 : 8;",
+      "total += numberOfLettersUpto1000(milles, true);",
+      "total += milles.zero? ? 0 : 5;",
     ].join("\n")
 
     terms = described_class.generate_exponentiated_terms(5_555_555)
     expect(terms.strip).to eq [
       "millions, remainder = remainder.divmod(1000000);",
-      "thousands, remainder = remainder.divmod(1000);",
+      "milles, remainder = remainder.divmod(1000);",
 
-      "total += numberOfLettersUpto1000(remainder);",
+      "total += numberOfLettersUpto1000(remainder, false);",
 
-      "total += numberOfLettersUpto1000(thousands);",
-      "total += thousands.zero? ? 0 : 8;",
+      "total += numberOfLettersUpto1000(milles, true);",
+      "total += milles.zero? ? 0 : 5;",
 
-      "total += numberOfLettersUpto1000(millions);",
+      "total += numberOfLettersUpto1000(millions, false);",
       "total += millions.zero? ? 0 : 7;",
+      "total += millions > 1 ? 1 : 0;",
     ].join("\n")
 
     terms = described_class.generate_exponentiated_terms(555_555_555_555_555_555)
     expect(terms.strip).to eq [
-      "quadrillions, remainder = remainder.divmod(1000000000000000);",
-      "trillions, remainder = remainder.divmod(1000000000000);",
-      "billions, remainder = remainder.divmod(1000000000);",
+      "billiards, remainder = remainder.divmod(1000000000000000);",
+      "billions, remainder = remainder.divmod(1000000000000);",
+      "milliards, remainder = remainder.divmod(1000000000);",
       "millions, remainder = remainder.divmod(1000000);",
-      "thousands, remainder = remainder.divmod(1000);",
+      "milles, remainder = remainder.divmod(1000);",
 
-      "total += numberOfLettersUpto1000(remainder);",
+      "total += numberOfLettersUpto1000(remainder, false);",
 
-      "total += numberOfLettersUpto1000(thousands);",
-      "total += thousands.zero? ? 0 : 8;",
+      "total += numberOfLettersUpto1000(milles, true);",
+      "total += milles.zero? ? 0 : 5;",
 
-      "total += numberOfLettersUpto1000(millions);",
+      "total += numberOfLettersUpto1000(millions, false);",
       "total += millions.zero? ? 0 : 7;",
+      "total += millions > 1 ? 1 : 0;",
 
-      "total += numberOfLettersUpto1000(billions);",
+      "total += numberOfLettersUpto1000(milliards, false);",
+      "total += milliards.zero? ? 0 : 8;",
+      "total += milliards > 1 ? 1 : 0;",
+
+      "total += numberOfLettersUpto1000(billions, false);",
       "total += billions.zero? ? 0 : 7;",
+      "total += billions > 1 ? 1 : 0;",
 
-      "total += numberOfLettersUpto1000(trillions);",
-      "total += trillions.zero? ? 0 : 8;",
-
-      "total += numberOfLettersUpto1000(quadrillions);",
-      "total += quadrillions.zero? ? 0 : 11;",
+      "total += numberOfLettersUpto1000(billiards, false);",
+      "total += billiards.zero? ? 0 : 8;",
+      "total += billiards > 1 ? 1 : 0;",
     ].join("\n")
   end
 
@@ -70,24 +75,24 @@ RSpec.describe NumberChain::Generator do
     expect(result).to eq []
 
     result = described_class.calculate_exponentiated_terms(5_555)
-    expect(result).to eq [[3, "thousand"]]
+    expect(result).to eq [[3, "mille"]]
 
     result = described_class.calculate_exponentiated_terms(55_555)
-    expect(result).to eq [[3, "thousand"]]
+    expect(result).to eq [[3, "mille"]]
 
     result = described_class.calculate_exponentiated_terms(555_555)
-    expect(result).to eq [[3, "thousand"]]
+    expect(result).to eq [[3, "mille"]]
 
     result = described_class.calculate_exponentiated_terms(5_555_555)
-    expect(result).to eq [[3, "thousand"], [6, "million"]]
+    expect(result).to eq [[3, "mille"], [6, "million"]]
 
     result = described_class.calculate_exponentiated_terms(55_555_555)
-    expect(result).to eq [[3, "thousand"], [6, "million"]]
+    expect(result).to eq [[3, "mille"], [6, "million"]]
 
     result = described_class.calculate_exponentiated_terms(555_555_555)
-    expect(result).to eq [[3, "thousand"], [6, "million"]]
+    expect(result).to eq [[3, "mille"], [6, "million"]]
 
     result = described_class.calculate_exponentiated_terms(5_555_555_555)
-    expect(result).to eq [[3, "thousand"], [6, "million"], [9, "billion"]]
+    expect(result).to eq [[3, "mille"], [6, "million"], [9, "milliard"]]
   end
 end

@@ -2,7 +2,10 @@ require "spec_helper"
 
 RSpec.describe NumberChain do
   def validate_length(n)
-    expected = n.to_words(hundreds_with_union: true).gsub(/[^a-z]/, "").length
+    expected = I18n.with_locale(:fr) do
+      n.to_words.gsub(/[^a-z]/, "").length
+    end
+
     actual = NumberChain.lookup(n)
 
     expect(expected).to eq(actual),
