@@ -224,6 +224,3 @@ real    7m5.415s
 user    6m20.249s
 sys     0m50.793s
 ```
-
-If you have any questions, you can contact me on
-[Twitter](https://twitter.com/cpatuzzo). Thanks.
